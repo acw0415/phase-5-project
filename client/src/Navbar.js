@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import * as ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import theme from "./styled-comps/theme";
+import SearchBar from "./SearchBar";
+
 
 
 
@@ -34,10 +36,13 @@ const NavbarLink = styled(Link)`
     color: ${theme.linkHover};
 };`
 
-function NavBar() {
-    return (
 
+function NavBar() {
+
+    return (
+        
         <NavbarContainer>
+           <SearchBar/>
             <NavbarLinkContainer>
                 <NavbarLink to="/">Home</NavbarLink>
             </NavbarLinkContainer>
@@ -45,7 +50,7 @@ function NavBar() {
                 <NavbarLink to="/about">About</NavbarLink>
             </NavbarLinkContainer>
             <NavbarLinkContainer>
-                <NavbarLink to="/users">Users</NavbarLink>
+                <NavbarLink to="/profile">Profile</NavbarLink>
             </NavbarLinkContainer>
         </NavbarContainer>
     )

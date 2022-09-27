@@ -4,14 +4,16 @@ one:
   availability: MyString
   currency: MyString
   currentLowestPrice: 1
-  id: MyString
+  gameId: MyString
   name: MyString
-  releaseDate: 2022-09-22
+  releaseDate: 2022-09-26
+  type: 
 
 two:
   availability: MyString
   currency: MyString
   currentLowestPrice: 1
-  id: MyString
+  gameId: MyString
   name: MyString
-  releaseDate: 2022-09-22
+  releaseDate: 2022-09-26
+  type: 

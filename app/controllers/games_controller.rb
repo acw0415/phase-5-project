@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[show edit update destroy]
+  # before_action :set_game, only: %i[show]
 
   #   const options = {
   #     method: 'GET',
@@ -16,81 +16,39 @@ class GamesController < ApplicationController
   # }, []);
 
   # GET /games or /games.json
-  def index
+  def index                         #/currently unused
     options = {
       'X-RapidAPI-Key': '32031538e6mshc7db306a60d2ca8p115933jsnb5ab8b1cd875',
       'X-RapidAPI-Host': 'game-prices.p.rapidapi.com'
     }
-    response = RestClient.get 'https://game-prices.p.rapidapi.com/games?title=minecraft&region=us&offset=0&limit=10',
+    response = RestClient.get 'https://game-prices.p.rapidapi.com/games?title=dying-light&region=us&offset=0&limit=50',
                               options
 
     render json: response, status: :ok
   end
 
-  # GET /games/1 or /games/1.json
-  # def show
-  #   options = {
-  #     'X-RapidAPI-Key': '32031538e6mshc7db306a60d2ca8p115933jsnb5ab8b1cd875',
-  #     'X-RapidAPI-Host': 'game-prices.p.rapidapi.com'
-  #   }
-  #   response = RestClient.get 'https://game-prices.p.rapidapi.com/games?title=minecraft&region=us&offset=0&limit=10',
-  #                             options
+  def show
+    gameName = params[:id]
+    options = {
+      'X-RapidAPI-Key': '32031538e6mshc7db306a60d2ca8p115933jsnb5ab8b1cd875',
+      'X-RapidAPI-Host': 'game-prices.p.rapidapi.com'
+    }
+    url = "https://game-prices.p.rapidapi.com/games?region=us&title=#{gameName}&offset=0&limit=50"
+    puts url
+    response = RestClient.get url,
+                              options
 
-  #   render json: response, status: :ok
-  # end
-
-  # GET /games/new
-  def new
-    @game = Game.new
+    render json: response, status: :ok
   end
 
-  # GET /games/1/edit
-  def edit; end
-
-  # POST /games or /games.json
-  def create
-    @game = Game.new(game_params)
-
-    respond_to do |format|
-      if @game.save
-        format.html { redirect_to game_url(@game), notice: 'Game was successfully created.' }
-        format.json { render :show, status: :created, location: @game }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /games/1 or /games/1.json
-  def update
-    respond_to do |format|
-      if @game.update(game_params)
-        format.html { redirect_to game_url(@game), notice: 'Game was successfully updated.' }
-        format.json { render :show, status: :ok, location: @game }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /games/1 or /games/1.json
-  def destroy
-    @game.destroy
-
-    respond_to do |format|
-      format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+ 
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_game
-    @game = Game.find(params[:id])
-  end
+  # def set_game
+  #   @game = Game.find(params[:id])
+  # end
 
   # Only allow a list of trusted parameters through.
   def game_params

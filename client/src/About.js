@@ -12,7 +12,7 @@ function About(){
 
     return(
         <AboutStyle>
-        <AboutImg src="https://media-exp1.licdn.com/dms/image/D4E35AQGQDjzhlTDfkg/profile-framedphoto-shrink_400_400/0/1663556495024?e=1664823600&v=beta&t=yCYcM7VaOaMyb4AaOQpE9kQCFW0GixG_S4yi-9V3S4A"></AboutImg>
+        <AboutImg src="https://media-exp1.licdn.com/dms/image/C4E03AQEHFUJG5rRgqA/profile-displayphoto-shrink_800_800/0/1658934378013?e=1669852800&v=beta&t=-V0u2jNha2Dgcm05pPbYxlYSyQPZwLUZkAmX3HDbht8" height={300}></AboutImg>
         <H1>Austin Wells</H1>
         <H4>https://www.linkedin.com/in/austin-c-wells/</H4>
         </AboutStyle>

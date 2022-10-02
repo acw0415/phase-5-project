@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   #   const options = {
   #     method: 'GET',
   #     headers: {
-  #       'X-RapidAPI-Key': '32031538e6mshc7db306a60d2ca8p115933jsnb5ab8b1cd875',
+  #       'X-RapidAPI-Key': '',
   #       'X-RapidAPI-Host': 'game-prices.p.rapidapi.com'
   #     }
   #   };

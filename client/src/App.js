@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Home from './Home';
 import NavBar from './Navbar';
+import Login from './Login';
 import Favorites from './Favorites';
 import About from './About';
 import Profile from './Profile';
@@ -11,6 +12,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Signup from './Signup';
 
 
 function App() {
@@ -21,6 +23,24 @@ function App() {
     "presentedGames": [],
     "totalAmountFound": 48
   })
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState("");
+
+  
+
+  useEffect(() => {
+    fetch("/me").then((res) => {
+      if (res.ok) {
+        res.json().then((user) => {
+          setCurrentUser(user);
+          setIsAuthenticated(true);
+          console.log(currentUser.id)
+        });
+      }
+    });
+  }, []);
+
 
 
 
@@ -43,21 +63,15 @@ function App() {
   useEffect(() => { searchGames("nick") }, []);
 
   return (
-    // <AppBackgroundStyle>
 
-    //   <NavBar/>
-
-    // <Favorites/>
-
-
-    // </AppBackgroundStyle>
     <AppBackgroundStyle>
       <Router>
         <NavBar searchGames={searchGames} />
         <Routes>
-          {/* <Route path="/game">
-            <Game />
-          </Route> */}
+        <Route path="/signup" element={<Signup />}>
+          </Route>
+          <Route path="/login" element={<Login {...{setIsAuthenticated, isAuthenticated, setCurrentUser}}/>}>
+          </Route>
           <Route path="/profile" element={<Profile />}>
           </Route>
           <Route path="/about" element={<About />}>

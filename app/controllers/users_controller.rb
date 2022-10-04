@@ -17,17 +17,15 @@ class UsersController < ApplicationController
 
     #GET "/me"
     def show
-        if current_user 
-            render json: current_user, status: :ok 
-        else 
-            render json: "No current session stored", status: :unauthorized
-        end
+         
+        render json: current_user, status: :ok 
+
     end
 
     private
     
     def user_params
-        params.permit(:email, :password, :password_confirmation)
+        params.permit(:email, :password)
     end
 
     def render_unprocessable_entity(invalid)

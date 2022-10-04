@@ -1,11 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import {useHistory} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 
 function Logout({ setCurrentUser, setIsAuthenticated }) {
 
-    const history = useHistory()
+    const history = useNavigate()
 
 
     const handleLogout = () => {
@@ -14,7 +14,7 @@ function Logout({ setCurrentUser, setIsAuthenticated }) {
               if (res.ok) {
                 setCurrentUser("")
                 setIsAuthenticated(false)
-                history.push('/logout')
+                history('/')
               }
             })
       }

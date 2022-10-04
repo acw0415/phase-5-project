@@ -3,7 +3,8 @@ import * as ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import theme from "./styled-comps/theme";
-import SearchBar from "./SearchBar";
+import Favorites from "./Favorites";
+import Logout from "./Logout";
 
 
 
@@ -42,16 +43,22 @@ function NavBar() {
     return (
         
         <NavbarContainer>
-           <SearchBar/>
             <NavbarLinkContainer>
                 <NavbarLink to="/">Home</NavbarLink>
             </NavbarLinkContainer>
             <NavbarLinkContainer>
-                <NavbarLink to="/about">About</NavbarLink>
+                <NavbarLink to="/favorites">Favorites</NavbarLink>
             </NavbarLinkContainer>
             <NavbarLinkContainer>
-                <NavbarLink to="/profile">Profile</NavbarLink>
+                <NavbarLink to="/signup">Sign-up</NavbarLink>
             </NavbarLinkContainer>
+            <NavbarLinkContainer>
+                <NavbarLink to="/login">Login</NavbarLink>
+            </NavbarLinkContainer>
+            <NavbarLinkContainer>
+                <NavbarLink to="/about">About</NavbarLink>
+            </NavbarLinkContainer>
+            <Logout/>
         </NavbarContainer>
     )
 }

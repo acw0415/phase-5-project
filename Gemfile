@@ -75,7 +75,4 @@ gem 'rest-client', '~> 2.1'
 
 gem 'active_model_serializers'
 
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-gem 'rack-cors'
-
 gem 'bcrypt', '~> 3.1.7'

@@ -2,12 +2,17 @@ import styled from 'styled-components'
 import theme from "./theme"
 
 const FormStyle = styled.form`
-    text-align: center; 
-    border: 2px solid red;
-    border-radius: 4px;
+display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
     align-items: center;
-    justify-content: center;
-    background-color: ${theme.purPink}
+width: 300px;
+box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+padding-top: 30px;
+padding-bottom: 20px;
+border-radius: 8px;
+background-color: ${theme.linkHover};
    
 `
 

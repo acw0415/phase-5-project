@@ -13,6 +13,7 @@ import {
   Link
 } from "react-router-dom";
 import Signup from './Signup';
+import Logout from './Logout';
 
 
 function App() {
@@ -27,15 +28,17 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
 
-  
+
 
   useEffect(() => {
     fetch("/me").then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          setCurrentUser(user);
-          setIsAuthenticated(true);
-          console.log(currentUser.id)
+          if (user.id) {
+            setCurrentUser(user);
+            setIsAuthenticated(true);
+            console.log(currentUser.id)
+          }
         });
       }
     });
@@ -60,7 +63,9 @@ function App() {
       .catch(err => console.error(err));
 
   }
-  useEffect(() => { searchGames("nick") }, []);
+  useEffect(() => { searchGames("minecraft") }, []);
+
+  console.log(currentUser, isAuthenticated, "user and auth")
 
   return (
 
@@ -68,11 +73,13 @@ function App() {
       <Router>
         <NavBar searchGames={searchGames} />
         <Routes>
-        <Route path="/signup" element={<Signup />}>
+          <Route path="/signup" element={<Signup />}>
           </Route>
-          <Route path="/login" element={<Login {...{setIsAuthenticated, isAuthenticated, setCurrentUser}}/>}>
+          <Route path="/logout" element={<Logout {...{ setCurrentUser, setIsAuthenticated }} />}>
           </Route>
-          <Route path="/profile" element={<Profile />}>
+          <Route path="/login" element={<Login {...{ setIsAuthenticated, isAuthenticated, setCurrentUser }} />}>
+          </Route>
+          <Route path="/favorites" element={<Favorites />}>
           </Route>
           <Route path="/about" element={<About />}>
           </Route>

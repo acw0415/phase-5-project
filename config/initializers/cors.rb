@@ -1,3 +1,4 @@
+
 # Be sure to restart your server when you modify this file.
 
 # Avoid CORS issues when API is called from the frontend app.
@@ -7,26 +8,10 @@
 
 # Rails.application.config.middleware.insert_before 0, Rack::Cors do
 #   allow do
-#     origins 'http://localhost:4000/'
-
+#     origins 'example.com'
+#
 #     resource '*',
 #       headers: :any,
 #       methods: [:get, :post, :put, :patch, :delete, :options, :head]
 #   end
 # end
-
-Rails.application.config.middleware.insert_before 0, Rack::Cors, debug: true, logger: (-> { Rails.logger }) do
-  allow do
-    origins '*'
-
-    resource '/cors',
-             headers: :any,
-             methods: [:post],
-             max_age: 0
-
-    resource '*',
-             headers: :any,
-             methods: %i[get post delete put patch options head],
-             max_age: 0
-  end
-end

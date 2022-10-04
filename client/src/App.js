@@ -18,6 +18,8 @@ import Logout from './Logout';
 
 function App() {
 
+  const [favData, setFavData] = useState()
+
   const [data, setData] = useState({
     "amount": 10,
     "games": [],
@@ -79,11 +81,11 @@ function App() {
           </Route>
           <Route path="/login" element={<Login {...{ setIsAuthenticated, isAuthenticated, setCurrentUser }} />}>
           </Route>
-          <Route path="/favorites" element={<Favorites />}>
+          <Route path="/favorites" element={<Favorites favData= {favData}/>}>
           </Route>
           <Route path="/about" element={<About />}>
           </Route>
-          <Route path="/" element={<Home data={data.games} />}>
+          <Route path="/" element={<Home data={data.games} setFavData={setFavData}/>}>
           </Route>
         </Routes>
       </Router>

@@ -28,12 +28,11 @@ justify-content: space-evenly;
     
 `
 
-function Home({ data = [] }) {
-
-    const [favData, setFaveData] = useState()
+function Home({ data = [], setFavData }) {
 
 
 
+  
 
     return (
 
@@ -46,7 +45,7 @@ function Home({ data = [] }) {
                 <TileContainer>
                     {data.map((dat) => (
 
-                        <TileStyle key={dat.id} onClick={() => console.log("test")}>
+                        <TileStyle key={dat.id} /*onClick={console.log([dat.name, dat.currentLowestPrice])}*/>
                             <H2> {dat.name} </H2>
                             <P>{dat.id} </P>
                             <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png" alt="placeholder" width="200" height="200" ></img>

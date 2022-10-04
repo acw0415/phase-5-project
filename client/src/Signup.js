@@ -42,10 +42,7 @@ function Signup() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
             },
-            referrerPolicy: 'no-referrer',
-            credentials: 'omit',
             body: JSON.stringify(body),
         }).then((res) => {
             if (!res.ok) {

@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import FavoritesStyle from "./styled-comps/FavoritesStyle";
 import TileStyle from "./styled-comps/TileStyle";
-import {H1} from "./styled-comps/Typography"
+import { H1 } from "./styled-comps/Typography"
 import styled from "styled-components";
 
 const FavoritesCenter = styled.div`
@@ -12,15 +12,20 @@ justify-content: space-evenly;
     
 `
 
-function Favorites({favData}){
+function Favorites({ favData }) {
+
+    // fetch(`/favorites`)
+    //   .then(r => r.json())
+    //   .then(r => setData(r))
+    //   .catch(err => console.error(err))
 
 
 
-    return(
+    return (
         <FavoritesCenter>
             <FavoritesStyle>
                 <H1>Favorites</H1>
-                <br/>
+                <br />
                 <li>
                     {/* <TileContainer>
                     {favData.map((dat) => (
@@ -33,7 +38,7 @@ function Favorites({favData}){
                         </TileStyle>
                     ))}
                     </TileContainer> */}
-                    Content
+                    {favData}
                 </li>
             </FavoritesStyle>
         </FavoritesCenter>

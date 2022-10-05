@@ -81,11 +81,11 @@ function App() {
           </Route>
           <Route path="/login" element={<Login {...{ setIsAuthenticated, isAuthenticated, setCurrentUser }} />}>
           </Route>
-          <Route path="/favorites" element={<Favorites favData= {favData}/>}>
+          <Route path="/favorites" element={<Favorites favData={favData} />}>
           </Route>
           <Route path="/about" element={<About />}>
           </Route>
-          <Route path="/" element={<Home data={data.games} setFavData={setFavData}/>}>
+          <Route path="/" element={<Home data={data.games} setFavData={setFavData} />}>
           </Route>
         </Routes>
       </Router>

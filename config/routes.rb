@@ -12,4 +12,10 @@ Rails.application.routes.draw do
 
   delete "/logout", to: "sessions#destroy"
 
+  get "/favorites", to: "favorites#show"
+
+  post "/favorites", to: "favorites#create"
+
+  delete "/favorites", to: "favorites#destroy"
+
 end

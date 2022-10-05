@@ -8,7 +8,7 @@ class FavoritesController < ApplicationController
 
   # GET /favorites/1 or /favorites/1.json
   def show
-    # @favorites = User.
+    @favorites = User.favorites
   end
 
   # GET /favorites/new

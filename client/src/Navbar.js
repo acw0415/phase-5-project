@@ -38,7 +38,7 @@ const NavbarLink = styled(Link)`
 };`
 
 
-function NavBar() {
+function NavBar({isAuthenticated}) {
 
     return (
         
@@ -46,9 +46,9 @@ function NavBar() {
             <NavbarLinkContainer>
                 <NavbarLink to="/">Home</NavbarLink>
             </NavbarLinkContainer>
-            <NavbarLinkContainer>
+           {isAuthenticated && <NavbarLinkContainer>
                 <NavbarLink to="/favorites">Favorites</NavbarLink>
-            </NavbarLinkContainer>
+            </NavbarLinkContainer>}
             <NavbarLinkContainer>
                 <NavbarLink to="/signup">Sign-up</NavbarLink>
             </NavbarLinkContainer>

@@ -28,9 +28,12 @@ justify-content: space-evenly;
     
 `
 
-function Home({ data = [], setFavData }) {
+function Home({ data = [], setFavData, favData }) {
 
-
+    const handleFav = (id, name, price,) => {
+        setFavData(favArray => [...favArray, {id, name, price}])
+        console.log(favData)
+    }
 
 
 
@@ -50,7 +53,7 @@ function Home({ data = [], setFavData }) {
                             <P>{dat.id} </P>
                             <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png" alt="placeholder" width="200" height="200" ></img>
                             <H3> Lowest Price: {dat.currentLowestPrice} </H3>
-                            <button onClick={setFavData(`favorite`)}>Add to Favorites</button>
+                            <button onClick={() => {handleFav(dat.id, dat.name, dat.currentLowestPrice)}}>Add to Favorites</button>
                         </TileStyle>
                     ))}
                 </TileContainer>}

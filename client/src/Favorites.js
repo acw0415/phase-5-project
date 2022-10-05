@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import FavoritesStyle from "./styled-comps/FavoritesStyle";
-import TileStyle from "./styled-comps/TileStyle";
-import { H1 } from "./styled-comps/Typography"
+import { TileStyle, TileContainer } from "./styled-comps/TileStyle";
+import { H1, H2, H3 } from "./styled-comps/Typography"
 import styled from "styled-components";
+import theme from "./styled-comps/theme";
 
 const FavoritesCenter = styled.div`
 
@@ -11,13 +12,34 @@ justify-content: space-evenly;
    
     
 `
+const FavoritesLi = styled.li`
+background-color: ${theme.secondaryButton};
+border-radius: 5px;
+padding: 5px;
+margin: 5px;
+color: ${theme.darkFont};
+`
 
-function Favorites({ favData }) {
+const NotesInput = styled.input`
+display: flex;
+`
+
+function Favorites({ favData, setFavData }) {
 
     // fetch(`/favorites`)
     //   .then(r => r.json())
     //   .then(r => setData(r))
     //   .catch(err => console.error(err))
+    
+
+    function deleteItem(id) {
+        console.log(favData)
+        const newList = favData.filter((item) => item.id !== id);
+    
+        setFavData(newList)
+        console.log(newList)
+    }
+
 
 
 
@@ -26,20 +48,20 @@ function Favorites({ favData }) {
             <FavoritesStyle>
                 <H1>Favorites</H1>
                 <br />
-                <li>
-                    {/* <TileContainer>
-                    {favData.map((dat) => (
-
-                        <TileStyle key={dat.id} onClick={() => console.log("test")}>
-                            <H2> {dat.name} </H2>
-                            <P>{dat.id} </P>
-                            <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png" alt="placeholder" width="200" height="200" ></img>
-                            <H3> Lowest Price: {dat.currentLowestPrice} </H3>
-                        </TileStyle>
-                    ))}
-                    </TileContainer> */}
-                    {favData}
-                </li>
+                    <ul>
+                        {favData.map(dat => {
+                            return (
+                                <FavoritesLi key={dat.id}>
+                                    <NotesInput placeholder="Notes:"></NotesInput>
+                                    {dat.name}
+                                    <br/>
+                                    Current Lowest Price: {dat.price}
+                                    <br/>
+                                    <button onClick={() => {deleteItem(dat.id)}}>Delete</button>
+                                </FavoritesLi>
+                            )
+                        })}
+                    </ul>
             </FavoritesStyle>
         </FavoritesCenter>
     )

@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom"
 import FormStyle from "./styled-comps/FormStyle";
 import styled from "styled-components";
 import { H1 } from "./styled-comps/Typography";
+import theme from "./styled-comps/theme"
 
 const LoginCenter = styled.div`
 
@@ -10,6 +11,10 @@ display: flex;
 justify-content: space-evenly;
    
     
+`
+const LoginH1 = styled.h1`
+    color: ${theme.lightFont}
+
 `
 
 
@@ -35,10 +40,7 @@ function Login({ setCurrentUser, setIsAuthenticated, isAuthenticated }) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
             },
-            referrerPolicy: 'no-referrer',
-            credentials: 'omit',
             body: JSON.stringify(formData),
         }).then((res) => {
             if (!res.ok) {
@@ -70,11 +72,10 @@ function Login({ setCurrentUser, setIsAuthenticated, isAuthenticated }) {
 
     return (
 
-            <div className="login-form">
-                <div className="title"></div>
+            <LoginCenter>
                 {
                     isAuthenticated ? <div>User is successfully logged in</div> : <div>
-                        <form onSubmit={handleSubmit}><h2>Login</h2>
+                        <FormStyle onSubmit={handleSubmit}><LoginH1>Login</LoginH1>
                             <div className="input-container">
 
                                 <input type="text" name="email" required placeholder="Email" onChange={handleChange} />
@@ -88,10 +89,10 @@ function Login({ setCurrentUser, setIsAuthenticated, isAuthenticated }) {
                             <div className="button-container">
                                 <button type="submit">Login</button>
                             </div>
-                        </form>
+                        </FormStyle>
                     </div>
                 }
-            </div>
+            </LoginCenter>
 
     );
 }

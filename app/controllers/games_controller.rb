@@ -1,19 +1,6 @@
 class GamesController < ApplicationController
-  # before_action :set_game, only: %i[show]
 
-  #   const options = {
-  #     method: 'GET',
-  #     headers: {
-  #       'X-RapidAPI-Key': '',
-  #       'X-RapidAPI-Host': 'game-prices.p.rapidapi.com'
-  #     }
-  #   };
-  #   useEffect(() => {
-  #   fetch('https://game-prices.p.rapidapi.com/games?title=minecraft&region=us&offset=0&limit=10', options)
-  #     .then(r => r.json())
-  #     .then(r => setData(r))
-  #     .catch(err => console.error(err));
-  # }, []);
+  skip_before_action :authenticate_user, only: [:show]
 
   # GET /games or /games.json
   def index                         #/currently unused

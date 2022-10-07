@@ -91,7 +91,7 @@ function Favorites({  currentUser }) {
                                 <br />
                                 {dat.name}
                                 <br />
-                                Current Lowest Price: {dat.price}
+                                Current Lowest Price: {dat.currentLowestPrice}
                                 <br />
                                 <button onClick={() => { deleteItem(index) }}>Delete</button>
                             </FavoritesLi>

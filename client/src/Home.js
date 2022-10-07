@@ -28,22 +28,19 @@ justify-content: space-evenly;
     
 `
 
-function Home({ data = [], setFavData, favData }) {
-
-    const handleFav = (id, name, price,) => {
-        setFavData(favArray => [...favArray, {id, name, price}])
-        console.log(favData)
-        
-    // useEffect(() => {
-    //     fetch("/favorites", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(favData),
-    //     }).then((res) => {res.json()})
-    // },[])
+function Home({ data = []}) {
+    const Anynote = "reptar"
+    const handleFav = ( name, currentLowestPrice) => {       
+        console.log("dog") 
+        fetch("/favorites", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({note:Anynote, name, currentLowestPrice}),
+        }).then((res) => {res.json()})
     }
+
 
 
 
@@ -56,14 +53,14 @@ function Home({ data = [], setFavData, favData }) {
             <br />
             {data.length === 0 ? <HomeCenter><ThreeCircles /></HomeCenter> :
                 <TileContainer>
-                    {data.map((dat) => (
+                    {data.map((dat, index) => (
 
-                        <TileStyle key={dat.id} >
+                        <TileStyle key={index} >
                             <H2> {dat.name} </H2>
                             <P>{dat.id} </P>
                             <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png" alt="placeholder" width="200" height="200" ></img>
                             <H3> Lowest Price: {dat.currentLowestPrice} </H3>
-                            <button onClick={() => {handleFav(dat.id, dat.name, dat.currentLowestPrice)}}>Add to Favorites</button>
+                            <button onClick={() => {handleFav( dat.name, dat.currentLowestPrice)}}>Add to Favorites</button>
                         </TileStyle>
                     ))}
                 </TileContainer>}

@@ -1,71 +1,54 @@
 class FavoritesController < ApplicationController
-  before_action :set_favorite, only: %i[ show edit update destroy ]
+  # before_action :set_favorite, only: %i[ show create update destroy ]
+  skip_before_action :authenticate_user ##this allows testing in postman ect without auth
 
-  # GET /favorites or /favorites.json
   def index
-    @favorites = Favorite.all
+    favorites = User.find(params[:id]).favorites
+    render json: favorites, status: :ok
   end
-
+  
+  
   # GET /favorites/1 or /favorites/1.json
-  def show
-    @favorites = User.favorites
+  def show 
+    favorites = User.find(params[:id]).favorites
+    render json: favorites, status: :ok
   end
 
-  # GET /favorites/new
-  def new
-    @favorite = Favorite.new
-  end
-
-  # GET /favorites/1/edit
-  def edit
-  end
 
   # POST /favorites or /favorites.json
   def create
-    @favorite = Favorite.new(favorite_params)
-
-    respond_to do |format|
-      if @favorite.save
-        format.html { redirect_to favorite_url(@favorite), notice: "Favorite was successfully created." }
-        format.json { render :show, status: :created, location: @favorite }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
-      end
+    # user_id = session[:user_id]
+    user_id = 2
+    if user_id 
+          databaseParams = favorite_params.merge!(user_id: user_id)
+          favorites = Favorite.create!(databaseParams)
+          render json: favorites, status: :created
+    else
+      puts "cannot create a favorite when not logged in"
     end
+
   end
 
-  # PATCH/PUT /favorites/1 or /favorites/1.json
+  # UPDATE /favorites or /favorites.json
   def update
-    respond_to do |format|
-      if @favorite.update(favorite_params)
-        format.html { redirect_to favorite_url(@favorite), notice: "Favorite was successfully updated." }
-        format.json { render :show, status: :ok, location: @favorite }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
-      end
-    end
+    power = find_power
+    power.update!(power_params)
+    render json: power, status: :accepted
   end
 
   # DELETE /favorites/1 or /favorites/1.json
   def destroy
-    @favorite.destroy
-
-    respond_to do |format|
-      format.html { redirect_to favorites_url, notice: "Favorite was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @favorite.destroy(params[:id])
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_favorite
-      @favorite = Favorite.find(params[:id])
+      @favorite = User.find(params[:id]).favorites
     end
 
     # Only allow a list of trusted parameters through.
     def favorite_params
-      params.fetch(:favorite, {})
+      params.permit(:name, :currentLowestPrice, :note)
     end
 end

@@ -33,6 +33,16 @@ function Home({ data = [], setFavData, favData }) {
     const handleFav = (id, name, price,) => {
         setFavData(favArray => [...favArray, {id, name, price}])
         console.log(favData)
+        
+    // useEffect(() => {
+    //     fetch("/favorites", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(favData),
+    //     }).then((res) => {res.json()})
+    // },[])
     }
 
 

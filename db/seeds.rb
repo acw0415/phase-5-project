@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+Favorite.destroy_all
+
+
+
+puts "Making Favorites..."
+5.times {Favorite.create(name: "random name",
+                          currentLowestPrice: rand(1..15),
+                          note: "testing",
+                          user_id: 1)}

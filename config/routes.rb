@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   post "/favorites", to: "favorites#create"
 
+  patch "/favorites", to: "favorites#update"
+
   delete "/favorites", to: "favorites#destroy"
 
 end

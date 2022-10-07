@@ -18,7 +18,7 @@ import Logout from './Logout';
 
 function App() {
 
-  const [favData, setFavData] = useState([])
+
 
   const [data, setData] = useState({
     "amount": 10,
@@ -49,14 +49,6 @@ function App() {
 console.log(currentUser, "currentuser test")
 
 
-  //   const options = {
-  //     method: 'GET',
-  //     headers: {
-  //       'X-RapidAPI-Key': '32031538e6mshc7db306a60d2ca8p115933jsnb5ab8b1cd875',
-  //       'X-RapidAPI-Host': 'game-prices.p.rapidapi.com'
-  //     }
-  //   };
-
   function searchGames(searchString) {
 
     fetch(`/games/${searchString}`)
@@ -81,11 +73,11 @@ console.log(currentUser, "currentuser test")
           </Route>
           <Route path="/login" element={<Login {...{ setIsAuthenticated, isAuthenticated, setCurrentUser }} />}>
           </Route>
-          {isAuthenticated && <Route path="/favorites" element={<Favorites favData={favData} setFavData={setFavData}  />}>
+          {isAuthenticated && <Route path="/favorites" element={<Favorites currentUser={currentUser}  />}>
           </Route>}
           <Route path="/about" element={<About />}>
           </Route>
-          <Route path="/" element={<Home data={data.games} setFavData={setFavData} favData={favData} />}>
+          <Route path="/" element={<Home data={data.games} />}>
           </Route>
         </Routes>
       </Router>

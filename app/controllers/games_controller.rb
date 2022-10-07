@@ -5,7 +5,7 @@ class GamesController < ApplicationController
   # GET /games or /games.json
   def index                         #/currently unused
     options = {
-      'X-RapidAPI-Key': '32031538e6mshc7db306a60d2ca8p115933jsnb5ab8b1cd875',
+      'X-RapidAPI-Key': 'e034744f63msh6690c7038a5de12p1a21f4jsn9b4c1f96edd2',
       'X-RapidAPI-Host': 'game-prices.p.rapidapi.com'
     }
     response = RestClient.get 'https://game-prices.p.rapidapi.com/games?title=dying-light&region=us&offset=0&limit=50',
@@ -17,7 +17,7 @@ class GamesController < ApplicationController
   def show
     gameName = params[:id]
     options = {
-      'X-RapidAPI-Key': '32031538e6mshc7db306a60d2ca8p115933jsnb5ab8b1cd875',
+      'X-RapidAPI-Key': 'e034744f63msh6690c7038a5de12p1a21f4jsn9b4c1f96edd2',
       'X-RapidAPI-Host': 'game-prices.p.rapidapi.com'
     }
     url = "https://game-prices.p.rapidapi.com/games?region=us&title=#{gameName}&offset=0&limit=50"

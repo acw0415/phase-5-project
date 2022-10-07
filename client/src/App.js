@@ -65,7 +65,7 @@ console.log(currentUser, "currentuser test")
 
     <AppBackgroundStyle>
       <Router>
-        <NavBar searchGames={searchGames} isAuthenticated={isAuthenticated}/>
+        <NavBar searchGames={searchGames} isAuthenticated={isAuthenticated} setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated}/>
         <Routes>
           <Route path="/signup" element={<Signup />}>
           </Route>

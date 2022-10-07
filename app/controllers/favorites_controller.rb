@@ -18,8 +18,6 @@ class FavoritesController < ApplicationController
   # POST /favorites or /favorites.json
   def create
     user_id = session[:user_id]
-    puts user_id
-    puts "kiko"
     # user_id = 2
     if user_id 
           databaseParams = favorite_params.merge!(user_id: user_id)

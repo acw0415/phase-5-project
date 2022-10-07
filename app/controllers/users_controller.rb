@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
-  skip_before_action :authenticate_user, only: [:create]
+  skip_before_action :authenticate_user, only: [:create, :index]
 
   # POST "/signup"
   def create
@@ -20,7 +20,19 @@ class UsersController < ApplicationController
     render json: current_user, status: :ok
   end
 
+  def update
+    current_user.update!(change_email_params)
+    render json: current_user, status: :accepted
+  end
+
+  def destroy
+    current_user.destroy
+  end
+
   private
+  def change_email_params
+    params.permit(:email)
+  end
 
   def user_params
     params.permit(:email, :password)

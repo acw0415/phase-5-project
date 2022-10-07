@@ -5,6 +5,8 @@ import styled from "styled-components";
 import theme from "./styled-comps/theme";
 import Favorites from "./Favorites";
 import Logout from "./Logout";
+import Deleteuser from "./Deleteuser"
+import UpdateEmail from "./UpdateEmail";
 
 
 
@@ -38,11 +40,14 @@ const NavbarLink = styled(Link)`
 };`
 
 
-function NavBar({isAuthenticated}) {
+function NavBar({isAuthenticated, setCurrentUser, setIsAuthenticated}) {
 
     return (
         
         <NavbarContainer>
+            <UpdateEmail/>
+            <Deleteuser setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated}/>
+            
             <NavbarLinkContainer>
                 <NavbarLink to="/">Home</NavbarLink>
             </NavbarLinkContainer>
@@ -58,7 +63,7 @@ function NavBar({isAuthenticated}) {
             <NavbarLinkContainer>
                 <NavbarLink to="/about">About</NavbarLink>
             </NavbarLinkContainer>
-            <Logout/>
+            <Logout setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated}/>
         </NavbarContainer>
     )
 }

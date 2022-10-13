@@ -5,4 +5,5 @@ class User < ApplicationRecord
     has_many :games, through: :favorites
 
     validates :email, uniqueness: true
+    validates :password, length: { in: 3..20 }
 end

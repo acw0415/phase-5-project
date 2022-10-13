@@ -38,7 +38,8 @@ function Signup({setCurrentUser, setIsAuthenticated}) {
         const { passwordConfirm, ...body } = formData
 
         if (passwordConfirm !== formData.password) {
-            console.error("passwords do not match")
+            alert("passwords do not match")
+            return
         }
 
         fetch("/signup", {
@@ -52,7 +53,7 @@ function Signup({setCurrentUser, setIsAuthenticated}) {
 
 
                 res.json().then((errors) => {
-                    console.error(errors);
+                    alert(errors.errors);
                 });
             } else{
                 res.json().then((user) => {

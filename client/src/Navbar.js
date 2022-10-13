@@ -6,6 +6,7 @@ import theme from "./styled-comps/theme";
 import Favorites from "./Favorites";
 import Logout from "./Logout";
 import UpdateEmail from "./UpdateEmail";
+import { H1 } from "./styled-comps/Typography";
 
 
 
@@ -44,8 +45,9 @@ function NavBar({ isAuthenticated, currentUser, setCurrentUser, setIsAuthenticat
     return (
 
         <NavbarContainer>
-            {console.log(currentUser)}
-            <UpdateEmail />
+            <H1>{currentUser.email}</H1>
+            <br/>
+            <UpdateEmail setCurrentUser={setCurrentUser}/>
             <NavbarLinkContainer>
                 <NavbarLink to="/">Home</NavbarLink>
             </NavbarLinkContainer>

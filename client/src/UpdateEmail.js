@@ -16,7 +16,7 @@ justify-content: space-evenly;
 
 
 
-function UpdateEmail() {
+function UpdateEmail({setCurrentUser}) {
 
 
   const [emailData, setEmailData] = useState({
@@ -31,7 +31,7 @@ function UpdateEmail() {
 
   function handleSubmit(e) {
       e.preventDefault();
-      console.log(emailData, "email")
+
 
       
 
@@ -48,7 +48,12 @@ function UpdateEmail() {
               res.json().then((errors) => {
                   console.error(errors);
               });
-          }
+          }else{
+            res.json().then((user) => {
+                setCurrentUser(user);
+                setEmailData({email: ""})
+            });
+        }
       });
       
   }

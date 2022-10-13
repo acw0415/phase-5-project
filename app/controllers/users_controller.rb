@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.update!(change_email_params)
+    current_user.update_column(:email, change_email_params[:email])
     render json: current_user, status: :accepted
   end
 

@@ -45,7 +45,9 @@ function Login({ setCurrentUser, setIsAuthenticated, isAuthenticated }) {
             body: JSON.stringify(formData),
         }).then((res) => {
             if (!res.ok) {
-
+                if (isAuthenticated !== true) {
+                    alert("Unsuccesful login")
+                }
 
                 res.json().then((errors) => {
                     console.error(errors);

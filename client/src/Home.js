@@ -29,7 +29,7 @@ justify-content: space-evenly;
     
 `
 
-function Home({ data = []}) {
+function Home({ data = [], isAuthenticated}) {
     const handleFav = ( name, currentLowestPrice) => {       
 
         fetch("/favorites", {
@@ -39,6 +39,8 @@ function Home({ data = []}) {
             },
             body: JSON.stringify({ name, currentLowestPrice}),
         }).then((res) => {res.json()})
+        if (isAuthenticated == true){
+            alert(`${name} has been added to favorites`)}
     }
 
 
@@ -56,7 +58,7 @@ function Home({ data = []}) {
                     {data.map((dat, index) => (
 
                         <TileStyle key={index} >
-                            {console.log(index)}
+                         
                             <H2> {dat.name} </H2>
                             <P>{dat.id} </P>
                             <H3> Lowest Price: {dat.currentLowestPrice} </H3>

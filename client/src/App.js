@@ -39,14 +39,14 @@ function App() {
           if (user.id) {
             setCurrentUser(user);
             setIsAuthenticated(true);
-            console.log(currentUser.id)
+
           }
         });
       }
     });
   }, []);
 
-console.log(currentUser, "currentuser test")
+
 
 
   function searchGames(searchString) {
@@ -59,7 +59,7 @@ console.log(currentUser, "currentuser test")
   }
   useEffect(() => { searchGames("minecraft") }, []);
 
-  console.log(currentUser, isAuthenticated, "user and auth")
+
 
   return (
 
@@ -77,7 +77,7 @@ console.log(currentUser, "currentuser test")
           </Route>}
           <Route path="/about" element={<About />}>
           </Route>
-          <Route path="/" element={<Home data={data.games} />}>
+          <Route path="/" element={<Home data={data.games} isAuthenticated={isAuthenticated}/>}>
           </Route>
         </Routes>
       </Router>

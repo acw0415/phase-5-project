@@ -1,4 +1,5 @@
 class FavoritesSerializer < ActiveModel::Serializer
-  attributes :id, :name, :currentLowestPrice, :note
+  attributes :id 
   has_one :user
+  has_one :game
 end

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import FavoritesStyle from "./styled-comps/FavoritesStyle";
 import { TileStyle, TileContainer } from "./styled-comps/TileStyle";
-import { H1, H2, H3 } from "./styled-comps/Typography"
+import { H1, P, H3 } from "./styled-comps/Typography"
 import styled from "styled-components";
 import theme from "./styled-comps/theme";
+import ButtonStyle from "./styled-comps/ButtonStyle";
 
 const FavoritesCenter = styled.div`
 
 display: flex;
-justify-content: space-evenly;
+flex-wrap: wrap;
+justify-content: space-between;
    
     
 `
@@ -18,16 +20,19 @@ border-radius: 5px;
 padding: 5px;
 margin: 5px;
 color: ${theme.darkFont};
-`
-
-const NotesInput = styled.input`
+list-style: none;
+width: 190px;
+text-align: center;
 display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
 `
 
-function Favorites({  currentUser }) {
 
-    const [note, setNote] = useState('')
-    const [backFav, setBackFav] = useState([])
+function Favorites({ currentUser }) {
+
+    const [favorites, setFavorites] = useState([])
 
 
 
@@ -35,7 +40,7 @@ function Favorites({  currentUser }) {
     useEffect(() => {
         fetch(`/favorites/${currentUser.id}`)
             .then(r => r.json())
-            .then(r => setBackFav(r))
+            .then(r => setFavorites(r))
             .catch(err => console.error(err))
     }, [])
 
@@ -43,63 +48,39 @@ function Favorites({  currentUser }) {
 
 
     const deleteItem = (id) => {
-        // console.log(favData, "index id")
-        // const newList = favData.filter((item) => item.id !== id);
-        // setFavData(newList)
         fetch('/favorites', {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(id)
+            body: JSON.stringify({ id })
         })
-            .then(res => { res.json() })
+        setFavorites(prev => prev.filter(o => o.id !== id))
     }
 
-
-
-    const handleNote = e => {
-        setNote(e.target.value)
-        //             useEffect(() => {  
-        //         fetch("/favorites", {
-        //         method: "PATCH",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //         body: JSON.stringify(note),
-        //     })
-        //     .then((res) => {res.json()})
-        // },[])
-    }
 
 
     return (
-        <FavoritesCenter>
-            <FavoritesStyle>
-                <H1>Favorites</H1>
-                <br />
-                <ul>
-                    {backFav.map((dat, index) => {
+
+        <FavoritesStyle>
+            <H1>Favorites</H1>
+            <FavoritesCenter>
+                    {favorites.map((dat, index) => {
+
                         return (
                             <FavoritesLi key={index}>
-                                {/* <form key={index}>
-                                    <NotesInput type="text" id="note" name="note" placeholder="Notes:" onChange={handleNote} ></NotesInput><button>Add Note</button>
-
-                                </form>
-
-                                {note} */}
-                                <br />
-                                {dat.name}
-                                <br />
-                                Current Lowest Price: {dat.currentLowestPrice}
-                                <br />
-                                <button onClick={() => { deleteItem(index) }}>Delete</button>
+                              
+                                <H1>{dat.name}</H1>
+              
+                                <P>Current Lowest Price: {dat.currentLowestPrice}</P>
+          
+                                <ButtonStyle onClick={() => { deleteItem(dat.id) }}><H3>Delete</H3></ButtonStyle>
                             </FavoritesLi>
                         )
                     })}
-                </ul>
-            </FavoritesStyle>
-        </FavoritesCenter>
+            </FavoritesCenter>
+        </FavoritesStyle>
+
     )
 }
 

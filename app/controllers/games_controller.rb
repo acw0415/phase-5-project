@@ -8,7 +8,7 @@ class GamesController < ApplicationController
       'X-RapidAPI-Key': 'e034744f63msh6690c7038a5de12p1a21f4jsn9b4c1f96edd2',
       'X-RapidAPI-Host': 'game-prices.p.rapidapi.com'
     }
-    response = RestClient.get 'https://game-prices.p.rapidapi.com/games?title=dying-light&region=us&offset=0&limit=50',
+    response = RestClient.get 'https://game-prices.p.rapidapi.com/games?title=dying-light&region=us&offset=0&limit=30',
                               options
 
     render json: response, status: :ok
@@ -20,7 +20,7 @@ class GamesController < ApplicationController
       'X-RapidAPI-Key': 'e034744f63msh6690c7038a5de12p1a21f4jsn9b4c1f96edd2',
       'X-RapidAPI-Host': 'game-prices.p.rapidapi.com'
     }
-    url = "https://game-prices.p.rapidapi.com/games?region=us&title=#{gameName}&offset=0&limit=50"
+    url = "https://game-prices.p.rapidapi.com/games?region=us&title=#{gameName}&offset=0&limit=30"
     puts url
     response = RestClient.get url,
                               options
@@ -39,6 +39,6 @@ class GamesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def game_params
-    params.require(:game).permit(:availability, :currency, :currentLowestPrice, :gameId, :name, :releaseDate, :type)
+    params.require(:game).permit(:name,:currentLowestPrice)
   end
 end

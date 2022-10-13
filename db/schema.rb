@@ -12,23 +12,17 @@
 
 ActiveRecord::Schema[7.0].define(version: 2022_10_02_183236) do
   create_table "favorites", force: :cascade do |t|
-    t.string "name"
-    t.integer "currentLowestPrice"
-    t.string "note"
     t.integer "user_id", null: false
+    t.integer "game_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_favorites_on_game_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "games", force: :cascade do |t|
-    t.string "availability"
-    t.string "currency"
-    t.integer "currentLowestPrice"
-    t.string "gameId"
     t.string "name"
-    t.date "releaseDate"
-    t.string "type"
+    t.integer "currentLowestPrice"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,5 +34,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_02_183236) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "favorites", "games"
   add_foreign_key "favorites", "users"
 end

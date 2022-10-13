@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import {useNavigate} from "react-router-dom"
 import FormStyle from "./styled-comps/FormStyle";
 import styled from "styled-components";
-import { H1 } from "./styled-comps/Typography";
+import { H3 } from "./styled-comps/Typography";
 import theme from "./styled-comps/theme"
+
 
 const LoginCenter = styled.div`
 

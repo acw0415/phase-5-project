@@ -4,6 +4,7 @@ import { TileStyle, TileContainer } from "./styled-comps/TileStyle";
 import { H1, H2, H3, P } from "./styled-comps/Typography"
 import { ThreeCircles } from 'react-loader-spinner'
 import styled from "styled-components";
+import ButtonStyle from "./styled-comps/ButtonStyle";
 
 
 <ThreeCircles
@@ -29,15 +30,14 @@ justify-content: space-evenly;
 `
 
 function Home({ data = []}) {
-    const Anynote = "reptar"
     const handleFav = ( name, currentLowestPrice) => {       
-        console.log("dog") 
+
         fetch("/favorites", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({note:Anynote, name, currentLowestPrice}),
+            body: JSON.stringify({ name, currentLowestPrice}),
         }).then((res) => {res.json()})
     }
 
@@ -56,11 +56,11 @@ function Home({ data = []}) {
                     {data.map((dat, index) => (
 
                         <TileStyle key={index} >
+                            {console.log(index)}
                             <H2> {dat.name} </H2>
                             <P>{dat.id} </P>
-                            <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png" alt="placeholder" width="200" height="200" ></img>
                             <H3> Lowest Price: {dat.currentLowestPrice} </H3>
-                            <button onClick={() => {handleFav( dat.name, dat.currentLowestPrice)}}>Add to Favorites</button>
+                            <ButtonStyle onClick={() => {handleFav( dat.name, dat.currentLowestPrice)}}><H3>Add to Favorites</H3></ButtonStyle>
                         </TileStyle>
                     ))}
                 </TileContainer>}

@@ -7,11 +7,15 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Favorite.destroy_all
+Game.destroy_all
 
-
-
-puts "Making Favorites..."
-5.times {Favorite.create(name: "random name",
-                          currentLowestPrice: rand(1..15),
-                          note: "testing",
-                          user_id: 1)}
+puts 'Making Games...'
+5.times do
+  Game.create(name: 'random name',
+              currentLowestPrice: rand(1..15))
+end
+puts 'Making Favorites...'
+1.times do
+  Favorite.create(user_id: User.first.id,
+                  game_id: Game.first.id)
+end

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import FormStyle from "./styled-comps/FormStyle";
 import styled from "styled-components";
 import { H1 } from "./styled-comps/Typography";
+import { useNavigate } from "react-router-dom";
+import ButtonStyle from "./styled-comps/ButtonStyle";
 
 
 const SignupCenter = styled.div`
@@ -14,8 +16,9 @@ justify-content: space-evenly;
 
 
 
-function Signup() {
+function Signup({setCurrentUser, setIsAuthenticated}) {
 
+   const history = useNavigate()
 
     const [formData, setFormData] = useState({
         email: "",
@@ -50,6 +53,12 @@ function Signup() {
 
                 res.json().then((errors) => {
                     console.error(errors);
+                });
+            } else{
+                res.json().then((user) => {
+                    setCurrentUser(user);
+                    setIsAuthenticated(true)
+                    history("/")
                 });
             }
         });

@@ -1,11 +1,10 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import * as ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import theme from "./styled-comps/theme";
 import Favorites from "./Favorites";
 import Logout from "./Logout";
-import Deleteuser from "./Deleteuser"
 import UpdateEmail from "./UpdateEmail";
 
 
@@ -40,30 +39,29 @@ const NavbarLink = styled(Link)`
 };`
 
 
-function NavBar({isAuthenticated, setCurrentUser, setIsAuthenticated}) {
+function NavBar({ isAuthenticated, currentUser, setCurrentUser, setIsAuthenticated }) {
 
     return (
-        
+
         <NavbarContainer>
-            <UpdateEmail/>
-            <Deleteuser setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated}/>
-            
+            {console.log(currentUser)}
+            <UpdateEmail />
             <NavbarLinkContainer>
                 <NavbarLink to="/">Home</NavbarLink>
             </NavbarLinkContainer>
-           {isAuthenticated && <NavbarLinkContainer>
+            {isAuthenticated && <NavbarLinkContainer>
                 <NavbarLink to="/favorites">Favorites</NavbarLink>
             </NavbarLinkContainer>}
-            <NavbarLinkContainer>
+            {!isAuthenticated && <NavbarLinkContainer>
                 <NavbarLink to="/signup">Sign-up</NavbarLink>
-            </NavbarLinkContainer>
-            <NavbarLinkContainer>
+            </NavbarLinkContainer>}
+            {!isAuthenticated && <NavbarLinkContainer>
                 <NavbarLink to="/login">Login</NavbarLink>
-            </NavbarLinkContainer>
+            </NavbarLinkContainer>}
             <NavbarLinkContainer>
                 <NavbarLink to="/about">About</NavbarLink>
             </NavbarLinkContainer>
-            <Logout setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated}/>
+            {isAuthenticated && <Logout setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated} />}
         </NavbarContainer>
     )
 }
